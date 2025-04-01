@@ -35,17 +35,26 @@ def listen_to_user():
             return None
 
 # Function for Text-to-Speech response (in-memory playback with sounddevice)
+import base64
+
 def speak_response(response):
     tts = gTTS(text=response, lang='en')
     mp3_fp = io.BytesIO()
     tts.write_to_fp(mp3_fp)
     mp3_fp.seek(0)
-    try:
-        data, samplerate = sf.read(BytesIO(mp3_fp.getvalue()))
-        sd.play(data, samplerate)
-        sd.wait() # waits until playback is finished.
-    except Exception as e:
-        st.error(f"Error playing audio: {e}")
+
+    # Encode to base64
+    audio_bytes = mp3_fp.read()
+    b64 = base64.b64encode(audio_bytes).decode()
+
+    # Embed and autoplay the audio in HTML
+    md = f"""
+    <audio autoplay>
+        <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+    </audio>
+    """
+    st.markdown(md, unsafe_allow_html=True)
+
 
 # Streamlit UI
 st.title("Voice Bot with Gemini")
