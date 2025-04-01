@@ -52,11 +52,9 @@ pydantic_core==2.33.0
 pydeck==0.9.1
 pydub==0.25.1
 pyparsing==3.2.3
-pypiwin32==223
 python-dateutil==2.9.0.post0
 pyttsx3==2.98
 pytz==2025.2
-pywin32==310
 referencing==0.36.2
 requests==2.32.3
 rpds-py==0.24.0
