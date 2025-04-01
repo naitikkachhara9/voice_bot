@@ -3,10 +3,7 @@ import google.generativeai as genai
 import speech_recognition as sr
 from gtts import gTTS
 import io
-import sounddevice as sd
-import numpy as np
-import soundfile as sf
-from io import BytesIO
+
 
 # Configure your Gemini API key
 genai.configure(api_key="AIzaSyCQ9Vype-aFxyYErN7lOMcNK4gjyiBwdwQ") # Replace with your actual Gemini API key
